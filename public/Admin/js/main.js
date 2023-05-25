@@ -18,6 +18,30 @@ $(document).ready(function(){
     });
 });
 
+function addFields(){
+    // Generate a dynamic number of inputs
+    var number = document.getElementById("dosis_harian").value;
+    // Get the element where the inputs will be added to
+    var container = document.getElementById("waktu-konsumsi");
+    // Remove every children it had before
+    while (container.hasChildNodes()) {
+        container.removeChild(container.lastChild);
+    }
+    for (i=0;i<number;i++){
+        // Append a node with a random text
+        container.appendChild(document.createTextNode("Waktu Konsumsi " + (i+1)));
+        // Create an <input> element, set its type and name attributes
+        var input = document.createElement("input");
+        input.id = "waktu";
+        input.type = "time";
+        input.name = "waktu";
+        input.className = "form-control int-lbl";
+        container.appendChild(input);
+        // Append a line break
+        container.appendChild(document.createElement("br"));
+    }
+}
+
 function search_obat() {
     let input = document.getElementById('searchbar').value
     input=input.toLowerCase();

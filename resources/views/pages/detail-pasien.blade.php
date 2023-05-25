@@ -159,34 +159,6 @@
                                         @endforeach
                                     </h5>
 
-                                    <div class="modal fade" id="deleteMed" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="dellApolabel" aria-hidden="true">
-                                        <div class="modal-dialog">
-                                          <div class="modal-content">
-                                            <div class="modal-header">
-                                              <h1 class="modal-title fs-5" id="dellApolabel">Delete Account</h1>
-                                              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                            </div>
-                                            <form action="/delete-schedule" method="post" enctype="multipart/form-data">
-                                                @csrf
-
-                                                <input type="hidden" name="slug" value="{{ $d->slug }}">
-                                                @foreach ($sch as $s)
-                                                <input type="hidden" name="id" value="{{ $s->id }}">
-                                                @endforeach
-                                                <div class="modal-body">
-                                                    Are you sure you want to delete this Schedule?
-                                                </div>
-
-                                                <div class="modal-footer">
-                                                    <button class="btn btn-danger" type="submit">Delete Schedule</button>
-                                            </form>
-                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                                </div>
-                                          </div>
-                                        </div>
-                                    </div>
-
-
                             </div>
                         </div>
 
@@ -319,6 +291,11 @@
                                         <td>
                                             {{ $o->created_at->isoformat('dddd, D MMMM Y') }}
                                         </td>
+                                        <td>
+                                            <button type="button" class="btn del-obat" data-bs-toggle="modal" data-bs-target="#delMedic">
+                                                <i class="bi bi-trash3"></i>
+                                            </button>
+                                        </td>
                                     </tr>
                                     @endforeach
 
@@ -326,6 +303,36 @@
                             </table>
                         </div>
 
+                        <div class="modal fade" id="delMedic" tabindex="-1" aria-labelledby="delMedicLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                              <div class="modal-content">
+                                <div class="modal-header">
+                                  <h1 class="modal-title fs-5" id="delMedicLabel">Delete Data</h1>
+                                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <form action="/delete-med" name="delmed" method="post" enctype="multipart/form-data">
+                                    @csrf
+
+                                    <input type="hidden" name="slug" value="{{ $d->slug }}">
+                                    @foreach ($obat as $o)
+                                    <input type="hidden" name="id" value="{{ $o->id }}">
+                                    @endforeach
+                                    <div class="modal-body">
+                                        Are you sure you want to delete this Data?
+                                    </div>
+
+                                    <div class="modal-footer">
+                                        <button class="btn btn-danger" type="submit">Delete Data</button>
+                                </form>
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                                </div>
+                              </div>
+                            </div>
+                        </div>
+
+                        <button type="button" class="btn btn-int" data-bs-toggle="modal" data-bs-target="#addMedicine">
+                            Add Data
+                        </button>
                 </div>
                 <div class="tab-pane fade show {{ Route::currentRouteName() == 'keluhan-pasien' ? 'active' : '' }} pt-3" id="profile-drp">
                     <h4 class="card-htitle">DRP Pasien</h4>
@@ -341,6 +348,110 @@
         </div><!-- End Bordered Tabs -->
 
     </div>
+
+        {{-- Modal Add Medicine --}}
+        <div class="modal fade" id="addMedicine" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-xl">
+              <div class="modal-content modal-input">
+                <div class="modal-header modal-head">
+                  <h1 class="modal-title" id="addDataLabel">Input Data Obat</h1>
+                </div>
+                <form action="/submit-obat" name="submed" method="POST" enctype="multipart/form-data">
+                    @csrf
+                <div class="modal-body modal-bd">
+                  <div class="row">
+                    <div class="col">
+                        <div class="card-addData">
+                            <div class="card-body-data">
+                              <h5 class="card-title addData-h">Konsumsi Obat</h5>
+                              <hr class="int-l">
+
+                                @foreach ($data as $d)
+                                    <input type="hidden" name="slug" value="{{ $d->slug }}">
+                                @endforeach
+
+                              <div class="mb-3 row">
+                                <label for="inputname" class="col-sm-4 col-form-label">Nama Obat</label>
+                                <div class="col-sm-8 align-items-end">
+                                    <select class="form-select form-control int-lbl" name="nama_obat">
+                                        <option selected>Pilih Nama Obat</option>
+                                        @foreach ($dataobat as $do)
+                                            <option value="{{ $do->nama_obat }}">{{ $do->nama_obat }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                              </div>
+
+                              <div class="mb-3 row">
+                                <label for="inputname" class="col-form-label">Jumlah Konsumsi per Hari</label>
+                                <div class=" input-group align-items-end">
+                                    <input type="text" id="dosis_harian" name="dosis_harian" class="form-control int-lbl" placeholder="Jumlah Konsumsi dalam 1 Hari" oninput="numberOnly(this.id);" aria-label="Recipient's username" aria-describedby="BJK" required>
+                                    <a href="#" class="btn btn-int" onclick="addFields()" id="BJK"> Tambah Data</a> <br>
+
+                                </div>
+
+                                <div class="align-items-end">
+                                    <br><div id="waktu-konsumsi"></div>
+                                </div>
+
+                              </div>
+
+                              <div class="mb-3 row">
+                                <label for="inputname" class="col-sm-4 col-form-label">Diminum Saat</label>
+                                <div class="align-items-end col-sm-8">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="waktu_minum" id="waktu_minum1" value="Sebelum Makan" required>
+                                        <label class="form-check-label" for="waktu_minum1">
+                                          Sebelum Makan
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="waktu_minum" id="waktu_minum2" value="Sesudah Makan" required>
+                                        <label class="form-check-label" for="waktu_minum2">
+                                          Sesudah Makan
+                                        </label>
+                                    </div>
+                                </div>
+                              </div>
+
+                            </div>
+                          </div>
+                    </div>
+                    <div class="col">
+                        <div class="card-addData">
+                            <div class="card-body">
+                              <h5 class="card-title addData-h">Detail Obat</h5>
+                              <hr class="int-l">
+
+                              <div class="mb-3 row">
+                                <label for="inputname" class="col-sm-4 col-form-label">Resep Oleh</label>
+
+                                <div class="align-items-end col-sm-8">
+                                    <label for="inputname" class="col-form-label">{{ auth()->user()->name }}</label>
+                                </div>
+                              </div>
+
+                              <div class="mb-3 row">
+                                <label for="inputname" class="col-sm-4 col-form-label">Jumlah Obat</label>
+                                <div class="align-items-end col-sm-3">
+                                  <input type="text" name="jumlah_obat" class="form-control int-lbl" id="bb" oninput="numberOnly(this.id);" required>
+                                </div>
+                              </div>
+
+                            </div>
+                          </div>
+                    </div>
+                  </div>
+
+                </div>
+                <div class="modal-footer modal-foot mb-3">
+                        <button type="submit " class="btn btn-int">Save</button>
+                </form>
+                  <button type="button" class="btn btn-dcl" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+        </div>
 
 
   </main><!-- End #main -->

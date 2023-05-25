@@ -87,9 +87,9 @@
                     </div>
 
                     <div class="mb-3 row">
-                      <label for="inputname" class="col-sm-4 col-form-label">Email</label>
+                      <label for="phone_number" class="col-sm-4 col-form-label">Nomor Telepon</label>
                       <div class="align-items-end col-sm-8">
-                        <input type="email" name="email" class="form-control int-lbl" id="inputname" required>
+                        <input type="text" name="phone_number" class="form-control int-lbl" id="phone_number" oninput="numberOnly(this.id);" maxlength="12" required>
                       </div>
                     </div>
 

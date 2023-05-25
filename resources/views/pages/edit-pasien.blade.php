@@ -809,27 +809,17 @@
                           </div>
 
                           <div class="mb-3 row">
-                            <label for="inputname" class="col-sm-4 col-form-label">Jumlah Konsumsi per Hari</label>
-                            <div class="align-items-end col-sm-8">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="dosis_harian" id="dosis_harian1" value="1" required>
-                                    <label class="form-check-label" for="dosis_harian1">
-                                      1
-                                    </label>
-                                </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="dosis_harian" id="dosis_harian2" value="2" required>
-                                    <label class="form-check-label" for="dosis_harian2">
-                                      2
-                                    </label>
-                                </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="dosis_harian" id="dosis_harian3" value="3" required>
-                                    <label class="form-check-label" for="dosis_harian3">
-                                      3
-                                    </label>
-                                </div>
+                            <label for="inputname" class="col-form-label">Jumlah Konsumsi per Hari</label>
+                            <div class=" input-group align-items-end">
+                                <input type="text" id="dosis_harian" name="dosis_harian" class="form-control int-lbl" placeholder="Jumlah Konsumsi dalam 1 Hari" oninput="numberOnly(this.id);" aria-label="Recipient's username" aria-describedby="BJK" required>
+                                <a href="#" class="btn btn-int" onclick="addFields()" id="BJK"> Tambah Data</a> <br>
+
                             </div>
+
+                            <div class="align-items-end">
+                                <br><div id="waktu-konsumsi"></div>
+                            </div>
+
                           </div>
 
                           <div class="mb-3 row">
@@ -847,13 +837,6 @@
                                       Sesudah Makan
                                     </label>
                                 </div>
-                            </div>
-                          </div>
-
-                          <div class="mb-3 row">
-                            <label for="inputname" class="col-sm-4 col-form-label">Waktu Konsumsi</label>
-                            <div class="align-items-end col-sm-8">
-                                <input type="text" name="waktu" class="form-control int-lbl" onfocus="(this.type='time')" onblur="if(!this.value)this.type='text'" required>
                             </div>
                           </div>
 
@@ -877,7 +860,7 @@
                           <div class="mb-3 row">
                             <label for="inputname" class="col-sm-4 col-form-label">Jumlah Obat</label>
                             <div class="align-items-end col-sm-3">
-                              <input type="text" name="jumlah_obat" class="form-control int-lbl" id="bb" oninput="numberOnly(this.id);" name="bb" required>
+                              <input type="text" name="jumlah_obat" class="form-control int-lbl" id="bb" oninput="numberOnly(this.id);" required>
                             </div>
                           </div>
 

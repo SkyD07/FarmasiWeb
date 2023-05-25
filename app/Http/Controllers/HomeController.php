@@ -41,7 +41,6 @@ class HomeController extends Controller
     protected function store_pasien(Request $request){
 
         $userdata = request()->all();
-
         $userObject = New User;
         $userdata['username'] = $userObject->generateUserName($request['name']);
         $user = User::create($userdata);

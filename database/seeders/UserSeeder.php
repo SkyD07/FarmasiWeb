@@ -20,7 +20,9 @@ class UserSeeder extends Seeder
             'email' => 'admin@gmail.com',
             'status' => 1,
             'password' => Hash::make('123'),
-            'role' => 'Admin'
+            'role' => 'Admin',
+            'phone_number' => '082198403940',
+            'address' => 'kota malang'
         ]);
     }
 }

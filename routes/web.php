@@ -68,7 +68,7 @@ Route::middleware([
 
         Route::post('/save-data-pasien', [HomeController::class, 'store_edit'])->name('pasien');
 
-        Route::get('/keluhan-pasien-{slug}', [HomeController::class, 'detail_pasien'])->name('keluhan-pasien');
+        Route::get('/keluhan-pasien-{slug}', [HomeController::class, 'edit_pasien'])->name('keluhan-pasien');
 
         Route::get('/timer-obat-pasien-{slug}', [HomeController::class, 'detail_pasien'])->name('set-timer');
 
