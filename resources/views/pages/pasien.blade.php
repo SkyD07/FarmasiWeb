@@ -101,9 +101,6 @@
                     {{ $d->created_at->isoformat('dddd, D MMMM Y') }}
                 </td>
                 <td style="text-align: center">
-                    {!! $d->classification($d->klasifikasi) !!}
-                </td>
-                <td style="text-align: center">
                     <a href="/edit-pasien-{{ $d->slug }}" class="btn edit-pasien">
                         <i class="bi bi-pencil-square"></i>
                     </a>
