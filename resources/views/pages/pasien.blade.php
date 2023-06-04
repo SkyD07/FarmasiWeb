@@ -4,6 +4,23 @@
 <head>
   <title>Daftar Pasien</title>
     @include('layouts.head')
+    <style>
+        th {
+            font-size: 16px;
+        }
+
+        @media screen and (max-width: 1450px) {
+            th {
+                font-size: 14px;
+            }
+        }
+
+        @media screen and (max-width: 800px) {
+            th {
+                font-size: 12px;
+            }
+        }
+    </style>
 </head>
 
 <body>
@@ -44,12 +61,12 @@
         <thead>
         <tr>
             <th scope="col" style="width: 20%">Nama & UID</th>
-            <th scope="col" style="width: 20%">Nama Obat</th>
-            <th scope="col" style="width: 5%">Stok obat</th>
+            <th scope="col" style="width: 15%">Nama Obat</th>
+            <th scope="col" style="width: 10%">Stok obat</th>
             <th scope="col" style="width: 15%">Pengawasan</th>
             <th scope="col" style="width: 10%; text-align: center">Last Login</th>
-            <th scope="col" style="width: 20%; text-align: center">Klasifikasi</th>
-            <th scope="col" style="width: 20%; text-align: center">Opsi</th>
+            <th scope="col" style="width: 15%; text-align: center">Klasifikasi</th>
+            <th scope="col" style="width: 15%; text-align: center">Opsi</th>
         </tr>
         </thead>
         <tbody>

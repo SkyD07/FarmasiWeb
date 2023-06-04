@@ -4,6 +4,23 @@
 <head>
   <title>Set Waktu Minum Obat Pasien</title>
     @include('layouts.head')
+    <style>
+        th {
+            font-size: 16px;
+        }
+
+        @media screen and (max-width: 1450px) {
+            th {
+                font-size: 14px;
+            }
+        }
+
+        @media screen and (max-width: 800px) {
+            th {
+                font-size: 12px;
+            }
+        }
+    </style>
 </head>
 
 <body>

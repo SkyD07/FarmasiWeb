@@ -12,7 +12,7 @@
             var min = time.getMinutes();
             var sec = time.getSeconds();
 
-            document.getElementById('clock').innerHTML = hrs + ":" + min + ":" + sec;
+            document.getElementById('clock').innerHTML = "<p style='font-size: 32px;'>" + hrs + ":" + min + ":" + sec + "</p>";
         }
      </script>
 </head>
